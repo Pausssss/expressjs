@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm</title>
+</head>
+<body>
+    <h1>Kết quả tìm kiếm cho: <%= username %></h1>
+    <% if (users.length > 0) { %>
+        <ul>
+            <% users.forEach(user => { %>
+                <li><%= user.username %> - <%= user.role %> - <%= user.created_at %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Không tìm thấy người dùng nào với tên <%= username %>.</p>
+    <% } %>
+</body>
+</html>

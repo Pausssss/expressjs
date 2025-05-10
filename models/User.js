@@ -1,14 +1,16 @@
 const pool = require('../config/db');
 
 class User {
+    // Lấy tất cả người dùng
     static async findAll() {
         const [rows] = await pool.query('SELECT id, username, role, created_at, avatar_url FROM users');
         return rows;
     }
 
-    static async findById(id) {
-        const [rows] = await pool.query('SELECT id, username, role, created_at, avatar_url FROM users WHERE id = ?', [id]);
-        return rows[0];
+    // Tìm kiếm người dùng theo username (với LIKE để tìm kiếm theo tên người dùng gần đúng)
+    static async findByUsername(username) {
+        const [rows] = await pool.query('SELECT id, username, role, created_at, avatar_url FROM users WHERE username LIKE ?', [`%${username}%`]);
+        return rows;
     }
 }
 
